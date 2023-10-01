@@ -11,6 +11,14 @@ test('empty string diff variable will lead to exception', () => {
     expect(() => new MiniMaple().diff('12*x','')).toThrow(new InvalidArgumentError('diff variable is incorrect'));
 });
 
+test('empty string expr  will lead to exception', () => {
+    expect(() => new MiniMaple().diff('','x')).toThrow(new InvalidArgumentError('Expr is incorrect'));
+});
+
+test('empty expr  will lead to exception', () => {
+    expect(() => new MiniMaple().diff(null,'x')).toThrow(new InvalidArgumentError('Expr is incorrect'));
+});
+
 test('/ operation will lead to exception', () => {
     expect(() => new MiniMaple().diff('12*x+45/x','x')).toThrow(new InvalidArgumentError('Invalid operation is used'));
 });
