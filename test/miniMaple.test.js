@@ -20,15 +20,15 @@ test('empty expr  will lead to exception', () => {
 });
 
 test('/ operation will lead to exception', () => {
-    expect(() => new MiniMaple().diff('12*x+45/x','x')).toThrow(new InvalidArgumentError('Invalid operation is used'));
+    expect(() => new MiniMaple().diff('12*x+45/x','x')).toThrow(new InvalidOperationError('Invalid operation is used'));
 });
 
 test('** operation will lead to exception', () => {
-    expect(() => new MiniMaple().diff('12*x+45**x','x')).toThrow(new InvalidArgumentError('Invalid operation is used'));
+    expect(() => new MiniMaple().diff('12*x+45**x','x')).toThrow(new InvalidOperationError('Invalid operation is used'));
 });
 
 test('() operation will lead to exception', () => {
-    expect(() => new MiniMaple().diff('12*x+(45**x)','x')).toThrow(new InvalidArgumentError('Invalid operation is used'));
+    expect(() => new MiniMaple().diff('12*x+(45**x)','x')).toThrow(new InvalidOperationError('Invalid operation is used'));
 });
 
 test('simple consts after diff equals 0', () => {
@@ -68,7 +68,7 @@ test('expr with + and - operations diff-ed correctly', () => {
 
 test('expr with + and - and consts  diff-ed correctly', () => {
     const res = new MiniMaple().diff('123*x+12y+4*x^400-x^45+12+12*45','x')
-    expect(res).toBe('123+1600*x^3-45*x^44');
+    expect(res).toBe('123+1600*x^399-45*x^44');
 });
 
 test('expr multiple diff var multiplication diff-ed correctly', () => {
@@ -78,5 +78,5 @@ test('expr multiple diff var multiplication diff-ed correctly', () => {
 
 test('expr with + and - and consts with multiple diff var multiplication diff-ed correctly', () => {
     const res = new MiniMaple().diff('123*x+12y+4*x^400-x^45+12+12*45+7*x*x*x','x')
-    expect(res).toBe('123+1600*x^3-45*x^44+21*x^2');
+    expect(res).toBe('123+1600*x^399-45*x^44+21*x^2');
 });
